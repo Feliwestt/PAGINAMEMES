@@ -40,7 +40,6 @@ $resultado = $conexion->query("SELECT * FROM memes .ORDER BY fecha DESC");
             <p><?= nl2br(htmlspecialchars($meme['descripcion'])) ?></p>
             <small><?= $meme['fecha'] ?></small>
         </div>
-        <div class="div"></div>
     <?php endwhile; ?>
 </body>
 </html>
