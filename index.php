@@ -1,6 +1,6 @@
 <?php
 include 'conexion.php';
-$resultado = $conexion->query("SELECT * FROM memes .ORDER BY fecha DESC");
+$resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
 ?>
 <!DOCTYPE html>
 <html lang="es">
