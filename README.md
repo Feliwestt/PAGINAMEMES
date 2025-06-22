@@ -11,3 +11,8 @@ CREATE TABLE memes (
     descripcion TEXT,
     fecha DATETIME
 );
+
+
+
+[BD.txt](https://github.com/user-attachments/files/20850720/BD.txt)
+        
