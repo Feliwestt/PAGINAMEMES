@@ -13,6 +13,6 @@ CREATE TABLE memes (
 );
 
 
-
+DESCARGA EL ARCHIVO DE LA BASE DE DATOS PARA VERLO EN OTRO FORMATO
 [BD.txt](https://github.com/user-attachments/files/20850720/BD.txt)
         
