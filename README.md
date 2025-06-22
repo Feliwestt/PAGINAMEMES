@@ -2,8 +2,8 @@ Ejecutar en base de datos
 
 XAMPP PORT 3306
 
-CREATE DATABASE bd_memes_indie;
-USE bd_memes_indie;
+CREATE DATABASE db_memes_indie;
+USE db_memes_indie;
 CREATE TABLE memes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255),
