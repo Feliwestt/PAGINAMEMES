@@ -33,22 +33,22 @@ DESCARGA EL ARCHIVO DE LA BASE DE DATOS PARA VERLO EN OTRO FORMATO
        USE db_memes_indie;
 
        CREATE TABLE IF NOT EXISTS memes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(255) NOT NULL,
-    imagen VARCHAR(255) NOT NULL,
-    descripcion TEXT,
-    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    tipo VARCHAR(20) NOT NULL DEFAULT 'imagen' -- 'imagen' o 'video'
-    );
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            titulo VARCHAR(255) NOT NULL,
+            imagen VARCHAR(255) NOT NULL,
+            descripcion TEXT,
+            fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+            tipo VARCHAR(20) NOT NULL DEFAULT 'imagen' -- 'imagen' o 'video'
+        );
 
-    CREATE TABLE IF NOT EXISTS comentarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    meme_id INT NOT NULL,
-    autor VARCHAR(100) NOT NULL,
-    texto TEXT NOT NULL,
-    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (meme_id) REFERENCES memes(id) ON DELETE CASCADE
-    );
+       CREATE TABLE IF NOT EXISTS comentarios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            meme_id INT NOT NULL,
+            autor VARCHAR(100) NOT NULL,
+            texto TEXT NOT NULL,
+            fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (meme_id) REFERENCES memes(id) ON DELETE CASCADE
+       );
 
 
 
