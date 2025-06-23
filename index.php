@@ -8,31 +8,307 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
     <meta charset="UTF-8">
     <title>Galería de Memes</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f0f0f0; }
-        .meme { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #ccc; margin: 20px auto; padding: 20px; width: 400px; }
-        .meme img { max-width: 100%; border-radius: 8px; }
-        .meme h2 { margin: 0 0 10px 0; }
-        .meme p { color: #555; }
-        .meme small { color: #888; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #f1f1f1;
+            margin: 0;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+        h1, h2 {
+            color: #a7bfff;
+            text-shadow: 0 2px 8px #1118;
+        }
+        .mensaje {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #263238;
+            padding: 10px;
+            border-radius: 6px;
+            color: #7fffd4;
+            text-align: center;
+            box-shadow: 0 2px 8px #0006;
+        }
+        /* Botón flotante arriba a la izquierda */
+        .btn-flotante {
+            position: fixed;
+            top: 100px;
+            left: 32px;
+            z-index: 1001;
+            background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 12px 28px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #0004;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-flotante:hover {
+            background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+            transform: scale(1.05);
+        }
+        /* Fondo difuminado para el modal */
+        .modal-fondo {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(30, 34, 43, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+        }
+        .modal-fondo.activo {
+            display: block;
+        }
+        /* Modal centrado */
+        .modal-formulario {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1002;
+            background: #1e222b;
+            padding: 32px 28px 18px 28px;
+            border-radius: 14px;
+            box-shadow: 0 8px 32px #000b;
+            min-width: 320px;
+            max-width: 95vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.25s;
+        }
+        .modal-formulario.activo {
+            display: block;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -60%) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        .modal-formulario label {
+            color: #b0b8d1;
+            font-weight: 500;
+        }
+        .modal-formulario input[type="text"],
+        .modal-formulario textarea {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background: #23272f;
+            color: #f1f1f1;
+            font-size: 1em;
+        }
+        .modal-formulario input[type="file"] {
+            margin-bottom: 12px;
+            color: #b0b8d1;
+        }
+        .modal-formulario button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px #0004;
+        }
+        .modal-formulario button[type="submit"]:hover {
+            background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+        }
+        .cerrar-modal {
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #b0b8d1;
+            font-size: 1.7em;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .cerrar-modal:hover {
+            color: #fff;
+        }
+        .galeria {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            padding: 0 20px 40px 20px;
+        }
+        .meme {
+            background: #23272f;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px #0007;
+            padding: 28px 24px 20px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.15s, box-shadow 0.15s;
+            width: 100%;
+            max-width: 700px;
+            min-width: 340px;
+            min-height: 650px;
+            max-height: 650px;
+            justify-content: flex-start;
+        }
+        .meme:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px #000b;
+        }
+        .meme img {
+            width: 100%;
+            height: 440px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 12px #0006;
+            background:rgb(20, 22, 26);
+            display: block;
+            cursor: default;
+        }
+        .meme h2 {
+            margin: 0 0 10px 0;
+            color: #a7bfff;
+            font-size: 1.3em;
+            text-align: center;
+        }
+        .meme p {
+            color: #b0b8d1;
+            font-size: 1em;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .meme small {
+            color: #7f8fa6;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            .galeria { grid-template-columns: 1fr; }
+            .modal-formulario { min-width: 0; padding: 18px 6vw 12px 6vw; }
+            .btn-flotante { left: 10px; top: 10px; padding: 10px 16px; font-size: 1em; }
+        }
+        .header-indie {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            width: 100vw;
+            height: 64px;
+            background: rgba(30,34,43,0.98);
+            box-shadow: 0 2px 12px #0008;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #logo-indie {
+            color: #a7bfff;
+            font-size: 2.1em;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 2px;
+            margin: 0;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s, text-shadow 0.2s;
+            text-shadow: 0 2px 12px #1118;
+        }
+        #logo-indie:hover {
+            color: #fff;
+            text-shadow: 0 4px 24px #647dee;
+        }
+        .modal-img-fondo {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(30,34,43,0.85);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+        }
+        .modal-img-fondo.activo {
+            display: block;
+        }
+        .modal-img {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2001;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: 98vw;
+            max-height: 98vh;
+            text-align: center;
+        }
+        .modal-img.activo {
+            display: block;
+        }
+        #imgModalGrande {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 32px #000b;
+            background: #181a20;
+        }
+        .cerrar-modal-img {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #23272f;
+            border: none;
+            color: #fff;
+            font-size: 2.2em;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #0008;
+            z-index: 2002;
+            transition: background 0.2s, color 0.2s;
+        }
+        .cerrar-modal-img:hover {
+            background: #7f53ac;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <header class="header-indie">
+        <h1 id="logo-indie">INDIE MEMES</h1>
+    </header>
     <?php if (isset($_GET['mensaje'])): ?>
-        <div style="max-width:400px;margin:20px auto;background:#e0ffe0;padding:10px;border-radius:6px;color:#256029;text-align:center;">
+        <div class="mensaje">
             <?= htmlspecialchars($_GET['mensaje']) ?>
         </div>
     <?php endif; ?>
+    <button class="btn-flotante" id="abrirModal">Subir Meme</button>
+    <div class="modal-fondo" id="modalFondo"></div>
+    <div class="modal-formulario" id="modalFormulario">
+        <button class="cerrar-modal" id="cerrarModal" title="Cerrar">&times;</button>
+        <h2 style="text-align:center;">Subir un nuevo meme</h2>
+        <form action="subir_meme.php" method="POST" enctype="multipart/form-data">
+            <label for="titulo">Título:</label><br>
+            <input type="text" name="titulo" id="titulo" required><br>
+            <label for="descripcion">Descripción:</label><br>
+            <textarea name="descripcion" id="descripcion" rows="3" required></textarea><br>
+            <label for="imagen">Imagen:</label><br>
+            <input type="file" name="imagen" id="imagen" accept="image/*" required><br>
+            <button type="submit">Subir Meme</button>
+        </form>
+    </div>
     <h1 style="text-align:center;">Galería de Memes</h1>
-    <h2 style="text-align:center;">Subir un nuevo meme</h2>
-    <form action="subir_meme.php" method="POST" enctype="multipart/form-data" style="max-width:400px;margin:0 auto 30px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px #ccc;">
-        <label for="titulo">Título:</label><br>
-        <input type="text" name="titulo" id="titulo" required style="width:100%;margin-bottom:10px;"><br>
-        <label for="descripcion">Descripción:</label><br>
-        <textarea name="descripcion" id="descripcion" rows="3" required style="width:100%;margin-bottom:10px;"></textarea><br>
-        <label for="imagen">Imagen:</label><br>
-        <input type="file" name="imagen" id="imagen" accept="image/*" required style="margin-bottom:10px;"><br>
-        <button type="submit" style="width:100%;padding:10px;background:#4caf50;color:#fff;border:none;border-radius:4px;">Subir Meme</button>
-    </form>
+    <div class="galeria">
     <?php while ($meme = $resultado->fetch_assoc()): ?>
         <div class="meme">
             <h2><?= htmlspecialchars($meme['titulo']) ?></h2>
@@ -41,5 +317,71 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             <small><?= $meme['fecha'] ?></small>
         </div>
     <?php endwhile; ?>
+    </div>
+    <div class="modal-img-fondo" id="modalImgFondo"></div>
+    <div class="modal-img" id="modalImg">
+        <button class="cerrar-modal-img" id="cerrarModalImg" title="Cerrar">&times;</button>
+        <img id="imgModalGrande" src="" alt="Meme grande">
+    </div>
+    <script>
+        const abrirModal = document.getElementById('abrirModal');
+        const cerrarModal = document.getElementById('cerrarModal');
+        const modalFondo = document.getElementById('modalFondo');
+        const modalFormulario = document.getElementById('modalFormulario');
+
+        function mostrarModal() {
+            modalFondo.classList.add('activo');
+            modalFormulario.classList.add('activo');
+            document.body.style.overflow = 'hidden';
+        }
+        function ocultarModal() {
+            modalFondo.classList.remove('activo');
+            modalFormulario.classList.remove('activo');
+            document.body.style.overflow = '';
+        }
+        abrirModal.addEventListener('click', mostrarModal);
+        cerrarModal.addEventListener('click', ocultarModal);
+        modalFondo.addEventListener('click', ocultarModal);
+        // Cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') ocultarModal();
+        });
+
+        document.getElementById('logo-indie').onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Modal de imagen grande
+        const modalImgFondo = document.getElementById('modalImgFondo');
+        const modalImg = document.getElementById('modalImg');
+        const cerrarModalImg = document.getElementById('cerrarModalImg');
+        const imgModalGrande = document.getElementById('imgModalGrande');
+
+        function mostrarImgModal(src, alt) {
+            imgModalGrande.src = src;
+            imgModalGrande.alt = alt || 'Meme grande';
+            modalImgFondo.classList.add('activo');
+            modalImg.classList.add('activo');
+            document.body.style.overflow = 'hidden';
+        }
+        function ocultarImgModal() {
+            modalImgFondo.classList.remove('activo');
+            modalImg.classList.remove('activo');
+            imgModalGrande.src = '';
+            document.body.style.overflow = '';
+        }
+        cerrarModalImg.addEventListener('click', ocultarImgModal);
+        modalImgFondo.addEventListener('click', ocultarImgModal);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') ocultarImgModal();
+        });
+        // Asignar evento a todas las imágenes de memes
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.meme img').forEach(function(img) {
+                img.style.cursor = 'default';
+                img.onclick = null;
+            });
+        });
+    </script>
 </body>
 </html>
