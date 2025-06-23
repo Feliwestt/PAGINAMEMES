@@ -29,8 +29,7 @@ CREATE TABLE IF NOT EXISTS comentarios (
 
 DESCARGA EL ARCHIVO DE LA BASE DE DATOS PARA VERLO EN OTRO FORMATO
 
-        [Uploa
-CREATE DATABASE db_memes_indie;
+       CREATE DATABASE db_memes_indie;
 USE db_memes_indie;
 
 
@@ -53,5 +52,6 @@ CREATE TABLE IF NOT EXISTS comentarios (
     FOREIGN KEY (meme_id) REFERENCES memes(id) ON DELETE CASCADE
 );
 
-ding db memes.txt…]()
+
+
 
