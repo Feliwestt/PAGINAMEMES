@@ -161,6 +161,7 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             min-height: 650px;
             max-height: 650px;
             justify-content: flex-start;
+            position: relative;
         }
         .meme:hover {
             transform: translateY(-6px) scale(1.03);
@@ -192,6 +193,55 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
         .meme small {
             color: #7f8fa6;
             font-size: 0.9em;
+        }
+        .opciones-btn {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: #b0b8d1;
+            font-size: 1.7em;
+            cursor: pointer;
+            z-index: 10;
+            padding: 4px;
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s;
+        }
+        .opciones-btn:hover {
+            background: #23272f;
+            color: #fff;
+        }
+        .menu-opciones {
+            display: none;
+            position: absolute;
+            top: 44px;
+            right: 18px;
+            background: #23272f;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px #000a;
+            min-width: 120px;
+            z-index: 20;
+            padding: 6px 0;
+        }
+        .menu-opciones.activo {
+            display: block;
+        }
+        .menu-opciones button {
+            background: none;
+            border: none;
+            color: #b0b8d1;
+            width: 100%;
+            text-align: left;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu-opciones button:hover {
+            background: #647dee;
+            color: #fff;
         }
         @media (max-width: 600px) {
             .galeria { grid-template-columns: 1fr; }
@@ -302,8 +352,8 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             <input type="text" name="titulo" id="titulo" required><br>
             <label for="descripcion">Descripción:</label><br>
             <textarea name="descripcion" id="descripcion" rows="3" required></textarea><br>
-            <label for="imagen">Imagen:</label><br>
-            <input type="file" name="imagen" id="imagen" accept="image/*" required><br>
+            <label for="imagen">Imagen o Video(hasta 8mb):</label><br>
+            <input type="file" name="imagen" id="imagen" accept="image/*,video/mp4,video/webm,video/ogg" required><br>
             <button type="submit">Subir Meme</button>
         </form>
     </div>
@@ -311,8 +361,21 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
     <div class="galeria">
     <?php while ($meme = $resultado->fetch_assoc()): ?>
         <div class="meme">
+            <button class="opciones-btn" title="Opciones" onclick="toggleMenuOpciones(event, 'menu-<?= $meme['id'] ?>')">
+                &#8942;
+            </button>
+            <div class="menu-opciones" id="menu-<?= $meme['id'] ?>">
+                <button onclick="descargarMeme('imagenes/<?= htmlspecialchars($meme['imagen']) ?>', '<?= addslashes(htmlspecialchars($meme['titulo'])) ?>')">Descargar</button>
+            </div>
             <h2><?= htmlspecialchars($meme['titulo']) ?></h2>
-            <img src="imagenes/<?= htmlspecialchars($meme['imagen']) ?>" alt="Meme">
+            <?php if ($meme['tipo'] === 'video'): ?>
+                <video controls style="width:100%;height:440px;background:rgb(20,22,26);border-radius:10px;margin-bottom:18px;box-shadow:0 2px 12px #0006;object-fit:contain;display:block;">
+                    <source src="imagenes/<?= htmlspecialchars($meme['imagen']) ?>" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            <?php else: ?>
+                <img class="meme-img-ampliable" src="imagenes/<?= htmlspecialchars($meme['imagen']) ?>" alt="Meme" style="cursor:default;" />
+            <?php endif; ?>
             <p><?= nl2br(htmlspecialchars($meme['descripcion'])) ?></p>
             <small><?= $meme['fecha'] ?></small>
         </div>
@@ -377,11 +440,37 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
         });
         // Asignar evento a todas las imágenes de memes
         window.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.meme img').forEach(function(img) {
+            document.querySelectorAll('.meme-img-ampliable').forEach(function(img) {
+                img.addEventListener('click', function() {
+                    mostrarImgModal(img.src, img.alt);
+                });
                 img.style.cursor = 'default';
-                img.onclick = null;
             });
         });
+
+        function toggleMenuOpciones(event, id) {
+            event.stopPropagation();
+            document.querySelectorAll('.menu-opciones').forEach(function(menu) {
+                if (menu.id !== id) menu.classList.remove('activo');
+            });
+            var menu = document.getElementById(id);
+            if (menu) menu.classList.toggle('activo');
+        }
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.menu-opciones').forEach(function(menu) {
+                menu.classList.remove('activo');
+            });
+        });
+        function descargarMeme(url, nombre) {
+            const extension = url.split('.').pop().split('?')[0];
+            const nombreArchivo = nombre.replace(/[^a-zA-Z0-9-_]/g, '_') + '.' + extension;
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = nombreArchivo;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     </script>
 </body>
 </html>

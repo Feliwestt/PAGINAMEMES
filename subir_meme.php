@@ -5,13 +5,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $conexion->real_escape_string($_POST['titulo']);
     $descripcion = $conexion->real_escape_string($_POST['descripcion']);
     
-    // Procesar la imagen
+    // Procesar el archivo
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         $nombre_tmp = $_FILES['imagen']['tmp_name'];
         $nombre_original = basename($_FILES['imagen']['name']);
         $extension = strtolower(pathinfo($nombre_original, PATHINFO_EXTENSION));
-        $permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        if (!in_array($extension, $permitidas)) {
+        $imagenes = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $videos = ['mp4', 'webm', 'ogg'];
+        if (in_array($extension, $imagenes)) {
+            $tipo = 'imagen';
+        } elseif (in_array($extension, $videos)) {
+            $tipo = 'video';
+        } else {
             header('Location: index.php?mensaje=Tipo de archivo no permitido');
             exit;
         }
@@ -19,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ruta_destino = 'imagenes/' . $nuevo_nombre;
         if (move_uploaded_file($nombre_tmp, $ruta_destino)) {
             // Guardar en la base de datos
-            $sql = "INSERT INTO memes (titulo, imagen, descripcion) VALUES ('$titulo', '$nuevo_nombre', '$descripcion')";
+            $sql = "INSERT INTO memes (titulo, imagen, descripcion, tipo) VALUES ('$titulo', '$nuevo_nombre', '$descripcion', '$tipo')";
             if ($conexion->query($sql)) {
                 header('Location: index.php?mensaje=Meme subido con éxito');
                 exit;
@@ -28,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
         } else {
-            header('Location: index.php?mensaje=Error al subir la imagen');
+            header('Location: index.php?mensaje=Error al subir el archivo');
             exit;
         }
     } else {
-        header('Location: index.php?mensaje=No se seleccionó ninguna imagen');
+        header('Location: index.php?mensaje=No se seleccionó ningún archivo');
         exit;
     }
 } else {
