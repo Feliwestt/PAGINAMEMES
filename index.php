@@ -331,6 +331,23 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             background: #7f53ac;
             color: #fff;
         }
+        .comentario-link {
+            display: block;
+            margin: 18px auto 0 auto;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            border-radius: 8px;
+            padding: 6px 0 0 0;
+            width: 100%;
+            max-width: 180px;
+        }
+        .comentario-link:hover span {
+            color: #fff;
+        }
+        .comentario-link:hover svg {
+            stroke: #fff;
+        }
     </style>
 </head>
 <body>
@@ -378,6 +395,12 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             <?php endif; ?>
             <p><?= nl2br(htmlspecialchars($meme['descripcion'])) ?></p>
             <small><?= $meme['fecha'] ?></small>
+            <a class="comentario-link" href="meme.php?id=<?= $meme['id'] ?>" title="Comentar">
+                <span style="display:inline-flex;align-items:center;gap:6px;">
+                    <svg width="24" height="24" fill="none" stroke="#a7bfff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span style="color:#a7bfff;font-weight:500;">Comentar</span>
+                </span>
+            </a>
         </div>
     <?php endwhile; ?>
     </div>
