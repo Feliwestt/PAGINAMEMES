@@ -1,4 +1,4 @@
-[db memes.txt](https://github.com/user-attachments/files/20869645/db.memes.txt)[db memes.txt](https://github.com/user-attachments/files/20869611/db.memes.txt)Ejecutar en base de datos 
+
 
 XAMPP PORT 3306
 
