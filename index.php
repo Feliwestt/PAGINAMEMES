@@ -1,6 +1,11 @@
 <?php
 include 'conexion.php';
-$resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
+$filtro = $conexion->real_escape_string($_GET['filtro_etiqueta'] ?? '');
+if ($filtro) {
+    $resultado = $conexion->query("SELECT * FROM memes WHERE etiqueta = '$filtro' ORDER BY fecha DESC");
+} else {
+    $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,6 +23,17 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             <?= htmlspecialchars($_GET['mensaje']) ?>
         </div>
     <?php endif; ?>
+    <form method="GET" action="index.php" style="text-align:center; margin-bottom: 24px;">
+        <label for="filtro_etiqueta" style="color:#a7bfff;">Filtrar por etiqueta:</label>
+        <select name="filtro_etiqueta" id="filtro_etiqueta" onchange="this.form.submit()">
+            <option value="">Todas</option>
+            <option value="IA" <?= $filtro==='IA'?'selected':'' ?>>IA</option>
+            <option value="NSFW" <?= $filtro==='NSFW'?'selected':'' ?>>NSFW</option>
+            <option value="SFW" <?= $filtro==='SFW'?'selected':'' ?>>SFW</option>
+            <option value="animales" <?= $filtro==='animales'?'selected':'' ?>>animales</option>
+            <option value="politico" <?= $filtro==='politico'?'selected':'' ?>>politico</option>
+        </select>
+    </form>
     <button class="btn-flotante" id="abrirModal">Subir Meme</button>
     <div class="modal-fondo" id="modalFondo"></div>
     <div class="modal-formulario" id="modalFormulario">
@@ -28,6 +44,14 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
             <input type="text" name="titulo" id="titulo" required><br>
             <label for="descripcion">Descripción:</label><br>
             <textarea name="descripcion" id="descripcion" rows="3" required></textarea><br>
+            <label for="etiqueta">Etiqueta:</label><br>
+            <select name="etiqueta" id="etiqueta" required>
+                <option value="IA">IA</option>
+                <option value="NSFW">NSFW</option>
+                <option value="SFW" selected>SFW</option>
+                <option value="animales">animales</option>
+                <option value="politico">politico</option>
+            </select><br>
             <label for="imagen">Imagen o Video(hasta 8mb):</label><br>
             <input type="file" name="imagen" id="imagen" accept="image/*,video/mp4,video/webm,video/ogg" required><br>
             <button type="submit">Subir Meme</button>
@@ -44,6 +68,7 @@ $resultado = $conexion->query("SELECT * FROM memes ORDER BY fecha DESC");
                 <button onclick="descargarMeme('imagenes/<?= htmlspecialchars($meme['imagen']) ?>', '<?= addslashes(htmlspecialchars($meme['titulo'])) ?>')">Descargar</button>
             </div>
             <h2><?= htmlspecialchars($meme['titulo']) ?></h2>
+            <span class="etiqueta-meme"><?= htmlspecialchars($meme['etiqueta']) ?></span>
             <?php if ($meme['tipo'] === 'video'): ?>
                 <video controls style="width:100%;height:440px;background:rgb(20,22,26);border-radius:10px;margin-bottom:18px;box-shadow:0 2px 12px #0006;object-fit:contain;display:block;">
                     <source src="imagenes/<?= htmlspecialchars($meme['imagen']) ?>" type="video/mp4">
