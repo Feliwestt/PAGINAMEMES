@@ -69,6 +69,7 @@ if ($filtro) {
             </div>
             <h2><?= htmlspecialchars($meme['titulo']) ?></h2>
             <span class="etiqueta-meme"><?= htmlspecialchars($meme['etiqueta']) ?></span>
+            
             <?php if ($meme['tipo'] === 'video'): ?>
                 <video controls style="width:100%;height:440px;background:rgb(20,22,26);border-radius:10px;margin-bottom:18px;box-shadow:0 2px 12px #0006;object-fit:contain;display:block;">
                     <source src="imagenes/<?= htmlspecialchars($meme['imagen']) ?>" type="video/mp4">
