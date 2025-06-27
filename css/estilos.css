@@ -450,7 +450,7 @@ h1, h2 {
     display: inline-block;
     background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
     color: #fff;
-    font-size: 0.98em;
+    font-size: 0.75em;
     font-weight: bold;
     border-radius: 8px;
     padding: 4px 16px;
