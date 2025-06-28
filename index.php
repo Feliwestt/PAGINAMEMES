@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include 'includes/conexion.php';
 $filtro = $conexion->real_escape_string($_GET['filtro_etiqueta'] ?? '');
 if ($filtro) {
     $resultado = $conexion->query("SELECT * FROM memes WHERE etiqueta = '$filtro' ORDER BY fecha DESC");
@@ -66,6 +66,7 @@ if ($filtro) {
             </button>
             <div class="menu-opciones" id="menu-<?= $meme['id'] ?>">
                 <button onclick="descargarMeme('imagenes/<?= htmlspecialchars($meme['imagen']) ?>', '<?= addslashes(htmlspecialchars($meme['titulo'])) ?>')">Descargar</button>
+                <button onclick="abrirModalReporte(<?= $meme['id'] ?>)">Reportar</button>
             </div>
             <h2><?= htmlspecialchars($meme['titulo']) ?></h2>
             <span class="etiqueta-meme"><?= htmlspecialchars($meme['etiqueta']) ?></span>
@@ -94,91 +95,28 @@ if ($filtro) {
         <button class="cerrar-modal-img" id="cerrarModalImg" title="Cerrar">&times;</button>
         <img id="imgModalGrande" src="" alt="Meme grande">
     </div>
-    <script>
-        const abrirModal = document.getElementById('abrirModal');
-        const cerrarModal = document.getElementById('cerrarModal');
-        const modalFondo = document.getElementById('modalFondo');
-        const modalFormulario = document.getElementById('modalFormulario');
+    <!-- Modal de reporte -->
+    <div class="modal-fondo" id="modalFondoReporte" style="display:none;"></div>
+    <div class="modal-formulario" id="modalReporte" style="display:none;">
+        <button class="cerrar-modal" id="cerrarModalReporte" title="Cerrar">&times;</button>
+        <h2 style="text-align:center;">Reportar Meme</h2>
+        <form action="reportar_meme.php" method="POST">
+            <input type="hidden" name="meme_id" id="reporteMemeId">
+            <label for="motivo">Motivo:</label><br>
+            <select name="motivo" id="motivo" required style="width:100%;margin-bottom:10px;">
+                <option value="">Selecciona un motivo</option>
+                <option value="Ofensivo">Ofensivo</option>
+                <option value="Grotesco">Grotesco</option>
+                <option value="NSFW no etiquetado">NSFW no etiquetado</option>
+                <option value="Otro">Otro</option>
+            </select><br>
+            <label for="detalles">Detalles (opcional):</label><br>
+            <textarea name="detalles" id="detalles" rows="3" style="width:100%;margin-bottom:10px;"></textarea><br>
+            <button type="submit" style="width:100%;padding:10px;background:#e53935;color:#fff;border:none;border-radius:4px;">Enviar Reporte</button>
+        </form>
+    </div>
 
-        function mostrarModal() {
-            modalFondo.classList.add('activo');
-            modalFormulario.classList.add('activo');
-            document.body.style.overflow = 'hidden';
-        }
-        function ocultarModal() {
-            modalFondo.classList.remove('activo');
-            modalFormulario.classList.remove('activo');
-            document.body.style.overflow = '';
-        }
-        abrirModal.addEventListener('click', mostrarModal);
-        cerrarModal.addEventListener('click', ocultarModal);
-        modalFondo.addEventListener('click', ocultarModal);
-        // Cerrar con ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') ocultarModal();
-        });
-
-        document.getElementById('logo-indie').onclick = function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        // Modal de imagen grande
-        const modalImgFondo = document.getElementById('modalImgFondo');
-        const modalImg = document.getElementById('modalImg');
-        const cerrarModalImg = document.getElementById('cerrarModalImg');
-        const imgModalGrande = document.getElementById('imgModalGrande');
-
-        function mostrarImgModal(src, alt) {
-            imgModalGrande.src = src;
-            imgModalGrande.alt = alt || 'Meme grande';
-            modalImgFondo.classList.add('activo');
-            modalImg.classList.add('activo');
-            document.body.style.overflow = 'hidden';
-        }
-        function ocultarImgModal() {
-            modalImgFondo.classList.remove('activo');
-            modalImg.classList.remove('activo');
-            imgModalGrande.src = '';
-            document.body.style.overflow = '';
-        }
-        cerrarModalImg.addEventListener('click', ocultarImgModal);
-        modalImgFondo.addEventListener('click', ocultarImgModal);
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') ocultarImgModal();
-        });
-        // Asignar evento a todas las imágenes de memes
-        window.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.meme-img-ampliable').forEach(function(img) {
-                img.addEventListener('click', function() {
-                    mostrarImgModal(img.src, img.alt);
-                });
-                img.style.cursor = 'default';
-            });
-        });
-
-        function toggleMenuOpciones(event, id) {
-            event.stopPropagation();
-            document.querySelectorAll('.menu-opciones').forEach(function(menu) {
-                if (menu.id !== id) menu.classList.remove('activo');
-            });
-            var menu = document.getElementById(id);
-            if (menu) menu.classList.toggle('activo');
-        }
-        document.addEventListener('click', function() {
-            document.querySelectorAll('.menu-opciones').forEach(function(menu) {
-                menu.classList.remove('activo');
-            });
-        });
-        function descargarMeme(url, nombre) {
-            const extension = url.split('.').pop().split('?')[0];
-            const nombreArchivo = nombre.replace(/[^a-zA-Z0-9-_]/g, '_') + '.' + extension;
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = nombreArchivo;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-    </script>
+    <script src="js/funcion_index.js"></script>
+    
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include 'includes/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $conexion->real_escape_string($_POST['titulo']);

@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include 'includes/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $meme_id = isset($_POST['meme_id']) ? intval($_POST['meme_id']) : 0;
