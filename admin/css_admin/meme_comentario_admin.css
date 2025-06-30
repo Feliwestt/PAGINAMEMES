@@ -1,0 +1,178 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    color: #f1f1f1;
+    margin: 0;
+    min-height: 100vh;
+}
+.detalle-meme {
+    background: #23272f;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px #000a;
+    max-width: 700px;
+    margin: 40px auto 24px auto;
+    padding: 32px 28px 18px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.detalle-meme h2 {
+    color: #a7bfff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.detalle-meme small {
+    color: #7f8fa6;
+    margin-bottom: 18px;
+}
+.detalle-meme img, .detalle-meme video {
+    width: 100%;
+    max-width: 600px;
+    height: 440px;
+    object-fit: contain;
+    background: rgb(20,22,26);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px #0006;
+    display: block;
+}
+.detalle-meme p {
+    color: #b0b8d1;
+    font-size: 1.1em;
+    margin-bottom: 18px;
+    text-align: center;
+}
+.comentarios-section {
+    background: #1e222b;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px #0008;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    padding: 24px 20px 18px 20px;
+}
+.comentarios-section h3 {
+    color: #a7bfff;
+    margin-top: 0;
+}
+.comentario {
+    border-bottom: 1px solid #333a;
+    padding: 12px 0 8px 0;
+}
+.comentario:last-child {
+    border-bottom: none;
+}
+.comentario-autor {
+    color: #7fffd4;
+    font-weight: bold;
+}
+.comentario-fecha {
+    color: #7f8fa6;
+    font-size: 0.9em;
+    margin-left: 8px;
+}
+.comentario-texto {
+    color: #f1f1f1;
+    margin: 4px 0 0 0;
+}
+.form-comentario {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-comentario input, .form-comentario textarea {
+    background: #23272f;
+    color: #f1f1f1;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 1em;
+}
+.form-comentario button {
+    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.form-comentario button:hover {
+    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+}
+.volver-link {
+    display: inline-block;
+    margin: 24px auto 0 24px;
+    color: #a7bfff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    transition: color 0.2s;
+}
+.volver-link:hover {
+    color: #fff;
+}
+
+.detalle-meme-admin{
+    background:#23272f;
+    border-radius:14px;
+    box-shadow:0 4px 24px #000a;
+    max-width:700px;
+    margin:40px auto 24px;
+    padding:28px;
+    color:#e7e9ee;
+}
+.encabezado-meme{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px 16px;
+    margin-bottom:18px;
+}
+.encabezado-meme h2{flex:1 1 auto;margin:0;color:#a7bfff}
+.meme-id{color:#7fffd4;font-weight:500}
+.meme-fecha{color:#7f8fa6}
+.btn-eliminar-meme{
+    background:#e53935;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:6px 12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.btn-eliminar-meme:hover{background:#c62828}
+
+/* Media (img o video) */
+.media-meme{
+    width:100%;max-height:440px;object-fit:contain;
+    border-radius:10px;margin-bottom:18px;background:#14161a;
+}
+
+/* Comentarios */
+.comentarios-admin{
+    background:#1e222b;
+    max-width:700px;margin:0 auto 60px;padding:24px 22px;
+    border-radius:10px;box-shadow:0 2px 12px #0008;
+}
+.comentarios-admin h3{margin-top:0;color:#a7bfff}
+.comentario{
+    position:relative;padding:14px 38px 14px 0;border-bottom:1px solid #3337;
+}
+.comentario:last-child{border-bottom:none}
+.comentario-info small{color:#7f8fa6;margin-left:6px;font-size:.85em}
+.btn-del-comentario{
+    position:absolute;top:12px;right:0;
+    background:none;border:none;color:#e57373;
+    font-size:1.3em;cursor:pointer;padding:0 6px;
+}
+.btn-del-comentario:hover{color:#ff5252}
+
+/* Link de volver */
+.volver-link{
+    display:inline-block;margin:24px;
+    color:#a7bfff;text-decoration:none;font-weight:500;
+}
+.volver-link:hover{color:#fff}

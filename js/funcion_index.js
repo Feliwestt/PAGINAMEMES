@@ -4,6 +4,9 @@ const cerrarModal = document.getElementById('cerrarModal');
 const modalFondo = document.getElementById('modalFondo');
 const modalFormulario = document.getElementById('modalFormulario');
 
+
+
+
 function mostrarModal() {
     modalFondo.classList.add('activo');
     modalFormulario.classList.add('activo');

@@ -32,6 +32,8 @@ if ($filtro) {
             <option value="SFW" <?= $filtro==='SFW'?'selected':'' ?>>SFW</option>
             <option value="animales" <?= $filtro==='animales'?'selected':'' ?>>animales</option>
             <option value="politico" <?= $filtro==='politico'?'selected':'' ?>>politico</option>
+            <option value="anime" <?= $filtro==='anime'?'selected':'' ?>>anime</option>
+            <option value="gaming" <?= $filtro==='gaming'?'selected':'' ?>>gaming</option>
         </select>
     </form>
     <button class="btn-flotante" id="abrirModal">Subir Meme</button>
@@ -51,6 +53,8 @@ if ($filtro) {
                 <option value="SFW" selected>SFW</option>
                 <option value="animales">animales</option>
                 <option value="politico">politico</option>
+                <option value="anime">anime</option>
+                <option value="gaming">gaming</option>
             </select><br>
             <label for="imagen">Imagen o Video(hasta 8mb):</label><br>
             <input type="file" name="imagen" id="imagen" accept="image/*,video/mp4,video/webm,video/ogg" required><br>
