@@ -1,10 +1,17 @@
 <?php
+session_start();
 include 'includes/conexion.php';
+
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: usuarios/login.php?mensaje=Debes+iniciar+sesión+para+subir+un+meme');
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $conexion->real_escape_string($_POST['titulo']);
     $descripcion = $conexion->real_escape_string($_POST['descripcion']);
     $etiqueta = $conexion->real_escape_string($_POST['etiqueta'] ?? 'SFW');
+    $autor = $conexion->real_escape_string($_SESSION['usuario_nombre']);
     
     // Procesar el archivo
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -25,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ruta_destino = 'imagenes/' . $nuevo_nombre;
         if (move_uploaded_file($nombre_tmp, $ruta_destino)) {
             // Guardar en la base de datos
-            $sql = "INSERT INTO memes (titulo, imagen, descripcion, tipo, etiqueta) VALUES ('$titulo', '$nuevo_nombre', '$descripcion', '$tipo', '$etiqueta')";
+            $sql = "INSERT INTO memes (titulo, autor, imagen, descripcion, tipo, etiqueta) VALUES ('$titulo', '$autor', '$nuevo_nombre', '$descripcion', '$tipo', '$etiqueta')";
             if ($conexion->query($sql)) {
                 header('Location: index.php?mensaje=Meme subido con éxito');
                 exit;

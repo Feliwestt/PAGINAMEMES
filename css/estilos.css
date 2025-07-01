@@ -29,8 +29,14 @@ h1, h2 {
     box-shadow: 0 2px 12px #0008;
     z-index: 1100;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    padding: 0 32px;
+}
+.header-indie nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 }
 #logo-indie {
     color: #a7bfff;
@@ -460,4 +466,30 @@ h1, h2 {
     text-transform: uppercase;
     box-shadow: 0 2px 8px #0002;
     transition: background 0.2s, color 0.2s;
+}
+
+.btn-header {
+    display: inline-block !important;
+    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%) !important;
+    color: #fff !important;
+    padding: 10px 26px !important;
+    border: none !important;
+    border-radius: 24px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    margin-left: 16px !important;
+    font-size: 1em !important;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s !important;
+    box-shadow: 0 2px 12px #0003 !important;
+    cursor: pointer !important;
+    outline: none !important;
+    min-width: 100px;
+    text-align: center;
+}
+.btn-header:hover {
+    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 18px #647dee55 !important;
+    text-decoration: none !important;
 }

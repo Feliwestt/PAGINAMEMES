@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/conexion.php';
 $filtro = $conexion->real_escape_string($_GET['filtro_etiqueta'] ?? '');
 if ($filtro) {
@@ -16,7 +17,19 @@ if ($filtro) {
 </head>
 <body>
     <header class="header-indie">
-        <h1 id="logo-indie">INDIE MEMES</h1>
+        <div style="flex:1;"></div>
+        <h1 id="logo-indie" style="margin:0;position:absolute;left:50%;transform:translateX(-50%);">INDIE MEMES</h1>
+        <nav style="margin-left:auto;display:flex;align-items:center; margin-right:70px;">
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <span style="color:#a7bfff;font-weight:500;margin-right:18px;">
+                    ¡Hola, <?= htmlspecialchars($_SESSION['usuario_nombre']) ?>!
+                </span>
+                <a href="usuarios/logout.php" class="btn-header">Cerrar sesión</a>
+            <?php else: ?>
+                <a href="usuarios/registro.php" class="btn-header">Registrarse</a>
+                <a href="usuarios/login.php" class="btn-header" style="margin-left:10px;">Iniciar sesión</a>
+            <?php endif; ?>
+        </nav>
     </header>
     <?php if (isset($_GET['mensaje'])): ?>
         <div class="mensaje">
@@ -36,7 +49,13 @@ if ($filtro) {
             <option value="gaming" <?= $filtro==='gaming'?'selected':'' ?>>gaming</option>
         </select>
     </form>
-    <button class="btn-flotante" id="abrirModal">Subir Meme</button>
+    <?php if (isset($_SESSION['usuario_id'])): ?>
+        <button class="btn-flotante" id="abrirModal">Subir Meme</button>
+    <?php else: ?>
+        <div class="btn-flotante" style="background:#232946;color:#a7bfff;cursor:default;pointer-events:none;box-shadow:0 2px 8px #0004;">
+            Necesitas una cuenta para subir memes
+        </div>
+    <?php endif; ?>
     <div class="modal-fondo" id="modalFondo"></div>
     <div class="modal-formulario" id="modalFormulario">
         <button class="cerrar-modal" id="cerrarModal" title="Cerrar">&times;</button>
@@ -61,7 +80,6 @@ if ($filtro) {
             <button type="submit">Subir Meme</button>
         </form>
     </div>
-    <h1 style="text-align:center;">Galería de Memes</h1>
     <div class="galeria">
     <?php while ($meme = $resultado->fetch_assoc()): ?>
         <div class="meme">
@@ -72,7 +90,13 @@ if ($filtro) {
                 <button onclick="descargarMeme('imagenes/<?= htmlspecialchars($meme['imagen']) ?>', '<?= addslashes(htmlspecialchars($meme['titulo'])) ?>')">Descargar</button>
                 <button onclick="abrirModalReporte(<?= $meme['id'] ?>)">Reportar</button>
             </div>
-            <h2><?= htmlspecialchars($meme['titulo']) ?></h2>
+            <div style="display:flex;align-items:center;width:100%;margin-bottom:8px;">
+                <div style="flex:1;text-align:left;color:#7fffd4;font-weight:600;min-width:90px;">👤 <?= htmlspecialchars($meme['autor'] ?? 'Anónimo') ?></div>
+                <div style="flex:2;display:flex;justify-content:center;">
+                    <h2 style="margin:0;text-align:center;"><?= htmlspecialchars($meme['titulo']) ?></h2>
+                </div>
+                <div style="flex:1;"></div>
+            </div>
             <span class="etiqueta-meme"><?= htmlspecialchars($meme['etiqueta']) ?></span>
             
             <?php if ($meme['tipo'] === 'video'): ?>
@@ -121,6 +145,7 @@ if ($filtro) {
     </div>
 
     <script src="js/funcion_index.js"></script>
+    <script src="js/scroll_memes.js"></script>
     
 </body>
 </html>
