@@ -47,18 +47,12 @@ $comentarios = $conexion->query("SELECT * FROM comentarios WHERE meme_id = $id O
         <?php else: ?>
             <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
         <?php endif; ?>
-        <?php session_start(); if (isset($_SESSION['usuario_id'])): ?>
-            <form class="form-comentario" action="procesar_comentario.php" method="POST">
-                <input type="hidden" name="meme_id" value="<?= $meme['id'] ?>">
-                <input type="text" name="autor" value="<?= htmlspecialchars($_SESSION['usuario_nombre']) ?>" readonly style="background:#23272f;color:#7fffd4;font-weight:bold;">
-                <textarea name="texto" rows="3" placeholder="Escribe tu comentario..." required></textarea>
-                <button type="submit">Comentar</button>
-            </form>
-        <?php else: ?>
-            <div style="background:#232946;color:#a7bfff;padding:12px 18px;border-radius:8px;text-align:center;margin-top:18px;">
-                Necesitas una cuenta para comentar
-            </div>
-        <?php endif; ?>
+        <form class="form-comentario" action="procesar_comentario.php" method="POST">
+            <input type="hidden" name="meme_id" value="<?= $meme['id'] ?>">
+            <input type="text" name="autor" placeholder="Tu nombre" maxlength="100" required>
+            <textarea name="texto" rows="3" placeholder="Escribe tu comentario..." required></textarea>
+            <button type="submit">Comentar</button>
+        </form>
     </div>
 </body>
 </html> 

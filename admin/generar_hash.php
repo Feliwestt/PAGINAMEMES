@@ -7,8 +7,8 @@
 require_once __DIR__ . '/../includes/conexion.php';
 
     // Aqui solo ponen los datos, y el codigo encriptara y guardara la contraseña y usuario automaticamente en la base de datos
-$usuario = 'IndieMan777';
-$clave = 'CuandoTomamos';
+$usuario = 'Tomy';
+$clave = 'weco';
 $hash = password_hash($clave, PASSWORD_DEFAULT);
 
 $sql = "INSERT INTO admins (usuario, contra_hash) VALUES (?, ?)";

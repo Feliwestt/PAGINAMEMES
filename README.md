@@ -50,9 +50,9 @@ ADMINISTRADOR
 ----crear la tabla admins
 
     CREATE TABLE admins (
-        id_admin            INT AUTO_INCREMENT PRIMARY KEY,
-        usuario      VARCHAR(50)  NOT NULL UNIQUE,
-        contra_hash VARCHAR(255) NOT NULL
+        id            INT AUTO_INCREMENT PRIMARY KEY,
+        username      VARCHAR(50)  NOT NULL UNIQUE,
+        password_hash VARCHAR(255) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
        
 
@@ -63,15 +63,15 @@ ADMINISTRADOR
 
 ---tabla log_Actividad, esta se encarga de registrar los datos para crear un informe de flujo
 
-       CREATE TABLE log_actividad (
-           id            BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-           tipo          ENUM('meme_creado','comentario_creado','reporte_creado',
-                              'meme_borrado','comentario_borrado') NOT NULL,
-           referencia_id BIGINT UNSIGNED NULL,    -- ID del meme o comentario relacionado
-           usuario       VARCHAR(80) NULL,        -- opcional: quién realizó la acción
-           fecha         DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-           detalles      TEXT NULL                -- opcional: descripción adicional
-       );
+CREATE TABLE log_actividad (
+    id            BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    tipo          ENUM('meme_creado','comentario_creado','reporte_creado',
+                       'meme_borrado','comentario_borrado') NOT NULL,
+    referencia_id BIGINT UNSIGNED NULL,    -- ID del meme o comentario relacionado
+    usuario       VARCHAR(80) NULL,        -- opcional: quién realizó la acción
+    fecha         DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    detalles      TEXT NULL                -- opcional: descripción adicional
+);
 
 
 
