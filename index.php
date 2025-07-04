@@ -124,7 +124,9 @@ if ($filtro) {
             <button type="submit" style="width:100%;padding:10px;background:#e53935;color:#fff;border:none;border-radius:4px;">Enviar Reporte</button>
         </form>
     </div>
-
+    <footer class="footer-flotante">
+        <p>Todos los derechos reservados Indie Company</p>
+    </footer>
     <script src="js/funcion_index.js"></script>
     <script src="js/scroll_galeria.js"></script>
 </body>

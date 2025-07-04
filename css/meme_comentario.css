@@ -18,7 +18,7 @@ body {
     color: #fff !important;
 }
 .detalle-meme h2 {
-    color: #a7bfff;
+    color: #ffffff;
     margin-bottom: 10px;
     text-align: center;
     text-shadow: 0 2px 8px #000a;
@@ -54,7 +54,7 @@ body {
     color: #fff !important;
 }
 .comentarios-section h3 {
-    color: #a7bfff;
+    color: #ffffff;
     margin-top: 0;
     text-shadow: 0 2px 8px #000a;
 }
@@ -110,7 +110,7 @@ body {
 .volver-link {
     display: inline-block;
     margin: 24px auto 0 24px;
-    color: #a7bfff;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1em;

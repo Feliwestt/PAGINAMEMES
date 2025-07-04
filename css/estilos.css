@@ -7,14 +7,7 @@ body {
     padding-top: 70px;
 }
 
-.navbar {
-    background-color: #111;
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+
 
 h1 {
     color: #fff;
@@ -545,4 +538,31 @@ form label[for="filtro_etiqueta"] {
 
 form[action="index.php"] {
     margin-top: 32px;
+}
+
+.footer-flotante {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    background: none;
+    color: #7f8fa6;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    font-size: 1em;
+    box-shadow: none;
+    z-index: 1;
+    opacity: 0.95;
+    pointer-events: none;
+}
+.footer-flotante p {
+    margin: 0;
+    letter-spacing: 1px;
+}
+@media (max-width: 700px) {
+    .footer-flotante {
+        right: 8px;
+        bottom: 8px;
+        font-size: 0.5em;
+    }
 }
