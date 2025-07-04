@@ -126,6 +126,6 @@ if ($filtro) {
     </div>
 
     <script src="js/funcion_index.js"></script>
-    
+    <script src="js/scroll_galeria.js"></script>
 </body>
 </html>
