@@ -1,25 +1,27 @@
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #232526 0%, #414345 100%);
-    color: #f1f1f1;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: #000;
+    color: #fff;
     margin: 0;
     min-height: 100vh;
 }
 .detalle-meme {
-    background: #23272f;
+    background: #111 !important;
     border-radius: 14px;
-    box-shadow: 0 4px 24px #000a;
+    box-shadow: 0 4px 24px #000c;
     max-width: 700px;
     margin: 40px auto 24px auto;
     padding: 32px 28px 18px 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #fff !important;
 }
 .detalle-meme h2 {
     color: #a7bfff;
     margin-bottom: 10px;
     text-align: center;
+    text-shadow: 0 2px 8px #000a;
 }
 .detalle-meme small {
     color: #7f8fa6;
@@ -30,7 +32,7 @@ body {
     max-width: 600px;
     height: 440px;
     object-fit: contain;
-    background: rgb(20,22,26);
+    background: #181a20;
     border-radius: 10px;
     margin-bottom: 18px;
     box-shadow: 0 2px 12px #0006;
@@ -43,16 +45,18 @@ body {
     text-align: center;
 }
 .comentarios-section {
-    background: #1e222b;
+    background: #111 !important;
     border-radius: 10px;
     box-shadow: 0 2px 12px #0008;
     max-width: 700px;
     margin: 0 auto 40px auto;
     padding: 24px 20px 18px 20px;
+    color: #fff !important;
 }
 .comentarios-section h3 {
     color: #a7bfff;
     margin-top: 0;
+    text-shadow: 0 2px 8px #000a;
 }
 .comentario {
     border-bottom: 1px solid #333a;
@@ -71,7 +75,7 @@ body {
     margin-left: 8px;
 }
 .comentario-texto {
-    color: #f1f1f1;
+    color: #fff;
     margin: 4px 0 0 0;
 }
 .form-comentario {
@@ -81,26 +85,27 @@ body {
     gap: 10px;
 }
 .form-comentario input, .form-comentario textarea {
-    background: #23272f;
-    color: #f1f1f1;
-    border: none;
-    border-radius: 6px;
+    background: #181818 !important;
+    color: #fff !important;
+    border: 1px solid #333 !important;
+    border-radius: 6px !important;
     padding: 8px;
     font-size: 1em;
 }
 .form-comentario button {
-    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
-    color: #fff;
+    background: linear-gradient(90deg, #222 0%, #333 100%) !important;
+    color: #fff !important;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 10px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
+    box-shadow: 0 2px 8px #0008;
 }
 .form-comentario button:hover {
-    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+    background: linear-gradient(90deg, #333 0%, #222 100%) !important;
 }
 .volver-link {
     display: inline-block;

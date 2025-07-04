@@ -27,8 +27,9 @@ if ($filtro) {
         });
     <?php endif; ?>
     </script>
+    
     <form method="GET" action="index.php" style="text-align:center; margin-bottom: 24px;">
-        <label for="filtro_etiqueta" >Filtrar por etiqueta:</label>
+        <label for="filtro_etiqueta">Filtrar por etiqueta:</label>
         <select name="filtro_etiqueta" id="filtro_etiqueta" onchange="this.form.submit()">
             <option value="">Todas</option>
             <option value="IA" <?= $filtro==='IA'?'selected':'' ?>>IA</option>

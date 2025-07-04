@@ -534,3 +534,7 @@ form label[for="filtro_etiqueta"] {
     opacity: 1 !important;
     transform: translateX(-50%) scale(1) !important;
 }
+
+form[action="index.php"] {
+    margin-top: 32px;
+}
