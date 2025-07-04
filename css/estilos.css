@@ -566,3 +566,98 @@ form[action="index.php"] {
         font-size: 0.5em;
     }
 }
+
+.form-filtro-etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 32px;
+    margin-top: 32px;
+}
+.filtro-etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.filtro-etiquetas button {
+    background: #111;
+    color: #b0b8d1;
+    border: 1.5px solid #23272f;
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    outline: none;
+}
+.filtro-etiquetas button.activo,
+.filtro-etiquetas button:hover {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    border: 1.5px solid #647dee;
+}
+
+.dropdown-etiquetas {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-etiquetas > button {
+    background: #111;
+    color: #b0b8d1;
+    border: 1.5px solid #23272f;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    outline: none;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown-etiquetas > button:hover,
+.dropdown-etiquetas > button[aria-expanded="true"] {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    border: 1.5px solid #647dee;
+}
+.menu-etiquetas-extra {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    min-width: 160px;
+    background: #181a20;
+    border: 1.5px solid #23272f;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px #000a;
+    z-index: 100;
+    padding: 10px 0;
+    flex-direction: column;
+    gap: 0;
+}
+.menu-etiquetas-extra.visible {
+    display: flex;
+}
+.menu-etiquetas-extra button {
+    background: none;
+    color: #b0b8d1;
+    border: none;
+    border-radius: 0;
+    padding: 10px 24px;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.menu-etiquetas-extra button.activo,
+.menu-etiquetas-extra button:hover {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+}

@@ -28,18 +28,25 @@ if ($filtro) {
     <?php endif; ?>
     </script>
     
-    <form method="GET" action="index.php" style="text-align:center; margin-bottom: 24px;">
-        <label for="filtro_etiqueta">Filtrar por etiqueta:</label>
-        <select name="filtro_etiqueta" id="filtro_etiqueta" onchange="this.form.submit()">
-            <option value="">Todas</option>
-            <option value="IA" <?= $filtro==='IA'?'selected':'' ?>>IA</option>
-            <option value="NSFW" <?= $filtro==='NSFW'?'selected':'' ?>>NSFW</option>
-            <option value="SFW" <?= $filtro==='SFW'?'selected':'' ?>>SFW</option>
-            <option value="animales" <?= $filtro==='animales'?'selected':'' ?>>animales</option>
-            <option value="politico" <?= $filtro==='politico'?'selected':'' ?>>politico</option>
-            <option value="anime" <?= $filtro==='anime'?'selected':'' ?>>anime</option>
-            <option value="gaming" <?= $filtro==='gaming'?'selected':'' ?>>gaming</option>
-        </select>
+    <form method="GET" action="index.php" class="form-filtro-etiquetas" id="formFiltroEtiquetas">
+        <div class="filtro-etiquetas">
+            <button type="submit" name="filtro_etiqueta" value="" class="<?= $filtro===''?'activo':'' ?>">Todas</button>
+            <button type="submit" name="filtro_etiqueta" value="IA" class="<?= $filtro==='IA'?'activo':'' ?>">IA</button>
+            <button type="submit" name="filtro_etiqueta" value="NSFW" class="<?= $filtro==='NSFW'?'activo':'' ?>">NSFW</button>
+            <button type="submit" name="filtro_etiqueta" value="SFW" class="<?= $filtro==='SFW'?'activo':'' ?>">SFW</button>
+            <button type="submit" name="filtro_etiqueta" value="CLIPS" class="<?= $filtro==='CLIPS'?'activo':'' ?>">CLIPS</button>
+            <button type="submit" name="filtro_etiqueta" value="politico" class="<?= $filtro==='politico'?'activo':'' ?>">POLITICO</button>
+            <button type="submit" name="filtro_etiqueta" value="anime" class="<?= $filtro==='anime'?'activo':'' ?>">ANIME</button>
+            <button type="submit" name="filtro_etiqueta" value="gaming" class="<?= $filtro==='gaming'?'activo':'' ?>">GAMING</button>
+            <div class="dropdown-etiquetas">
+                <button type="button" id="btnDropdownEtiquetas" aria-haspopup="true" aria-expanded="false">&#9660;</button>
+                <div class="menu-etiquetas-extra" id="menuEtiquetasExtra">
+                    <button type="submit" name="filtro_etiqueta" value="GACHA" class="<?= $filtro==='GACHA'?'activo':'' ?>">GACHA</button>
+                    <button type="submit" name="filtro_etiqueta" value="NEWJEANS" class="<?= $filtro==='NEWJEANS'?'activo':'' ?>">NEWJEANS</button>
+                    <button type="submit" name="filtro_etiqueta" value="HAPPY V" class="<?= $filtro==='HAPPY V'?'activo':'' ?>">HAPPY V</button>
+                </div>
+            </div>
+        </div>
     </form>
     <button class="btn-flotante" id="abrirModal">Subir Meme</button>
     <div class="modal-fondo" id="modalFondo"></div>
@@ -56,10 +63,13 @@ if ($filtro) {
                 <option value="IA">IA</option>
                 <option value="NSFW">NSFW</option>
                 <option value="SFW" selected>SFW</option>
-                <option value="animales">animales</option>
-                <option value="politico">politico</option>
-                <option value="anime">anime</option>
-                <option value="gaming">gaming</option>
+                <option value="CLIPS">CLIPS</option>
+                <option value="politico">POLITICO</option>
+                <option value="anime">ANIME</option>
+                <option value="gaming">GAMING</option>
+                <option value="GACHA">GACHA</option>
+                <option value="NEWJEANS">NEWJEANS</option>
+                <option value="HAPPY V">HAPPY V</option>
             </select><br>
             <label for="imagen">Imagen o Video(hasta 8mb):</label><br>
             <input type="file" name="imagen" id="imagen" accept="image/*,video/mp4,video/webm,video/ogg" required><br>
@@ -129,5 +139,26 @@ if ($filtro) {
     </footer>
     <script src="js/funcion_index.js"></script>
     <script src="js/scroll_galeria.js"></script>
+    <script>
+    // Mostrar/ocultar menú de etiquetas extra
+    const btnDropdown = document.getElementById('btnDropdownEtiquetas');
+    const menuExtra = document.getElementById('menuEtiquetasExtra');
+    if(btnDropdown && menuExtra) {
+        btnDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+            menuExtra.classList.toggle('visible');
+            btnDropdown.setAttribute('aria-expanded', menuExtra.classList.contains('visible'));
+        });
+        document.addEventListener('click', function(e) {
+            if(menuExtra.classList.contains('visible')) {
+                menuExtra.classList.remove('visible');
+                btnDropdown.setAttribute('aria-expanded', 'false');
+            }
+        });
+        menuExtra.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    </script>
 </body>
 </html>
