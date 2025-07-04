@@ -1,39 +1,70 @@
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #232526 0%, #414345 100%);
-    color: #f1f1f1;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: #000;
+    color: #fff;
     margin: 0;
     min-height: 100vh;
     padding-top: 70px;
 }
-h1, h2 {
-    color: #a7bfff;
-    text-shadow: 0 2px 8px #1118;
+
+
+h1 {
+    color: #fff;
+    text-shadow: 0 2px 8px #000a;
 }
+h2 {
+    color: #ffffff;
+    text-shadow: 0 2px 8px #000a;
+}
+h3 {
+    color: #7fffd4;
+    text-shadow: 0 2px 8px #000a;
+}
+h4 {
+    color: #fff;
+    text-shadow: 0 2px 8px #000a;
+}
+h5 {
+    color: #fff;
+    text-shadow: 0 2px 8px #000a;
+}
+h6 {
+    color: #fff;
+    text-shadow: 0 2px 8px #000a;
+}
+
+h2 {
+    color: #ffffff;
+}
+
+
+
+
 .mensaje {
     max-width: 400px;
     margin: 20px auto;
-    background: #263238;
+    background: #111 !important;
     padding: 10px;
-    border-radius: 6px;
-    color: #7fffd4;
+    border-radius: 14px;
+    color: #fff !important;
     text-align: center;
-    box-shadow: 0 2px 8px #0006;
+    box-shadow: 0 4px 24px #000c;
 }
 .header-indie {
     position: fixed;
     top: 0; left: 0; right: 0;
     width: 100vw;
     height: 64px;
-    background: rgba(30,34,43,0.98);
-    box-shadow: 0 2px 12px #0008;
+    background: rgba(0,0,0,0.98) !important;
+    box-shadow: 0 2px 12px #000a;
+    border-bottom: 1.5px solid #222 !important;
     z-index: 1100;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 #logo-indie {
-    color: #a7bfff;
+    color: #fff !important;
     font-size: 2.1em;
     font-family: 'Segoe UI', Arial, sans-serif;
     letter-spacing: 2px;
@@ -41,10 +72,10 @@ h1, h2 {
     cursor: pointer;
     user-select: none;
     transition: color 0.2s, text-shadow 0.2s;
-    text-shadow: 0 2px 12px #1118;
+    text-shadow: 0 2px 12px #000a;
 }
 #logo-indie:hover {
-    color: #fff;
+    color: #a7bfff !important;
     text-shadow: 0 4px 24px #647dee;
 }
 .btn-flotante {
@@ -52,19 +83,19 @@ h1, h2 {
     top: 130px;
     left: 32px;
     z-index: 1001;
-    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
-    color: #fff;
+    background: linear-gradient(90deg, #222 0%, #333 100%) !important;
+    color: #fff !important;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 1.1em;
     font-weight: bold;
     padding: 12px 28px;
     cursor: pointer;
-    box-shadow: 0 2px 8px #0004;
+    box-shadow: 0 2px 8px #0008;
     transition: background 0.2s, transform 0.15s;
 }
 .btn-flotante:hover {
-    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+    background: linear-gradient(90deg, #333 0%, #222 100%) !important;
     transform: scale(1.05);
 }
 .modal-fondo {
@@ -85,7 +116,7 @@ h1, h2 {
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1002;
-    background: #1e222b;
+    background: #111 !important;
     padding: 32px 28px 18px 28px;
     border-radius: 14px;
     box-shadow: 0 8px 32px #000b;
@@ -94,6 +125,7 @@ h1, h2 {
     max-height: 90vh;
     overflow-y: auto;
     animation: modalIn 0.25s;
+    color: #fff !important;
 }
 .modal-formulario.activo {
     display: block;
@@ -111,10 +143,10 @@ h1, h2 {
     width: 100%;
     margin-bottom: 12px;
     padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background: #23272f;
-    color: #f1f1f1;
+    border: 1px solid #333 !important;
+    border-radius: 6px !important;
+    background: #181818 !important;
+    color: #fff !important;
     font-size: 1em;
 }
 .modal-formulario input[type="file"] {
@@ -124,18 +156,18 @@ h1, h2 {
 .modal-formulario button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
-    color: #fff;
+    background: linear-gradient(90deg, #222 0%, #333 100%) !important;
+    color: #fff !important;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
-    box-shadow: 0 2px 8px #0004;
+    box-shadow: 0 2px 8px #0008;
 }
 .modal-formulario button[type="submit"]:hover {
-    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+    background: linear-gradient(90deg, #333 0%, #222 100%) !important;
 }
 .cerrar-modal {
     position: absolute;
@@ -161,7 +193,7 @@ h1, h2 {
     padding: 0 20px 40px 20px;
 }
 .meme {
-    background: #23272f;
+    background: #111 !important;
     border-radius: 12px;
     box-shadow: 0 4px 16px #0007;
     padding: 28px 24px 20px 24px;
@@ -176,6 +208,7 @@ h1, h2 {
     max-height: 650px;
     justify-content: flex-start;
     position: relative;
+    color: #fff !important;
 }
 .meme:hover {
     transform: translateY(-6px) scale(1.03);
@@ -183,7 +216,7 @@ h1, h2 {
 }
 .meme img {
     width: 100%;
-    height: 440px;
+    height: 395px;
     object-fit: contain;
     border-radius: 10px;
     margin-bottom: 18px;
@@ -194,7 +227,7 @@ h1, h2 {
 }
 .meme h2 {
     margin: 0 0 10px 0;
-    color: #a7bfff;
+    color: #ffffff;
     font-size: 1.3em;
     text-align: center;
 }
@@ -231,7 +264,7 @@ h1, h2 {
     position: absolute;
     top: 44px;
     right: 18px;
-    background: #23272f;
+    background: #181818 !important;
     border-radius: 8px;
     box-shadow: 0 2px 12px #000a;
     min-width: 120px;
@@ -244,7 +277,7 @@ h1, h2 {
 .menu-opciones button {
     background: none;
     border: none;
-    color: #b0b8d1;
+    color: #fff !important;
     width: 100%;
     text-align: left;
     padding: 10px 18px;
@@ -254,8 +287,8 @@ h1, h2 {
     transition: background 0.2s, color 0.2s;
 }
 .menu-opciones button:hover {
-    background: #647dee;
-    color: #fff;
+    background: #333 !important;
+    color: #a7bfff !important;
 }
 .comentario-link {
     display: block;
@@ -273,6 +306,13 @@ h1, h2 {
 }
 .comentario-link:hover svg {
     stroke: #fff;
+}
+.comentario-link span {
+    color: #ffffff;
+    font-weight: 500;
+}
+.comentario-link svg {
+    stroke: #ffffff;
 }
 .modal-img-fondo {
     display: none;
@@ -337,7 +377,7 @@ h1, h2 {
 }
 /* Estilos para meme.php */
 .detalle-meme {
-    background: #23272f;
+    background: #111 !important;
     border-radius: 14px;
     box-shadow: 0 4px 24px #000a;
     max-width: 700px;
@@ -346,6 +386,7 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #fff !important;
 }
 .detalle-meme h2 {
     color: #a7bfff;
@@ -402,7 +443,7 @@ h1, h2 {
     margin-left: 8px;
 }
 .comentario-texto {
-    color: #f1f1f1;
+    color: #fff;
     margin: 4px 0 0 0;
 }
 .form-comentario {
@@ -412,26 +453,27 @@ h1, h2 {
     gap: 10px;
 }
 .form-comentario input, .form-comentario textarea {
-    background: #23272f;
-    color: #f1f1f1;
-    border: none;
-    border-radius: 6px;
+    background: #181818 !important;
+    color: #fff !important;
+    border: 1px solid #333 !important;
+    border-radius: 6px !important;
     padding: 8px;
     font-size: 1em;
 }
 .form-comentario button {
-    background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
-    color: #fff;
+    background: linear-gradient(90deg, #222 0%, #333 100%) !important;
+    color: #fff !important;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 10px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
+    box-shadow: 0 2px 8px #0008;
 }
 .form-comentario button:hover {
-    background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+    background: linear-gradient(90deg, #333 0%, #222 100%) !important;
 }
 .volver-link {
     display: inline-block;
@@ -447,9 +489,8 @@ h1, h2 {
 } 
 
 .etiqueta-meme {
-    display: inline-block;
-    background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
-    color: #fff;
+    background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%) !important;
+    color: #fff !important;
     font-size: 0.75em;
     font-weight: bold;
     border-radius: 8px;
@@ -460,4 +501,36 @@ h1, h2 {
     text-transform: uppercase;
     box-shadow: 0 2px 8px #0002;
     transition: background 0.2s, color 0.2s;
+}
+
+form label[for="filtro_etiqueta"] {
+    color: #b0b8d1 !important;
+    font-weight: bold;
+}
+
+#toast {
+    visibility: hidden;
+    min-width: 280px;
+    max-width: 90vw;
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px 32px;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 32px;
+    transform: translateX(-50%) scale(0.95);
+    font-size: 1.1em;
+    font-weight: 500;
+    box-shadow: 0 4px 24px #000a;
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s, visibility 0.4s;
+    pointer-events: none;
+}
+.toast-mostrar {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(-50%) scale(1) !important;
 }

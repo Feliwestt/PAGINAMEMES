@@ -18,13 +18,17 @@ if ($filtro) {
     <header class="header-indie">
         <h1 id="logo-indie">INDIE MEMES</h1>
     </header>
+    <div id="toast"></div>
+    <script src="js/toast.js"></script>
+    <script>
     <?php if (isset($_GET['mensaje'])): ?>
-        <div class="mensaje">
-            <?= htmlspecialchars($_GET['mensaje']) ?>
-        </div>
+        window.addEventListener('DOMContentLoaded', function() {
+            mostrarToast("<?= htmlspecialchars($_GET['mensaje']) ?>");
+        });
     <?php endif; ?>
+    </script>
     <form method="GET" action="index.php" style="text-align:center; margin-bottom: 24px;">
-        <label for="filtro_etiqueta" style="color:#a7bfff;">Filtrar por etiqueta:</label>
+        <label for="filtro_etiqueta" >Filtrar por etiqueta:</label>
         <select name="filtro_etiqueta" id="filtro_etiqueta" onchange="this.form.submit()">
             <option value="">Todas</option>
             <option value="IA" <?= $filtro==='IA'?'selected':'' ?>>IA</option>
@@ -88,7 +92,7 @@ if ($filtro) {
             <a class="comentario-link" href="meme.php?id=<?= $meme['id'] ?>" title="Comentar">
                 <span style="display:inline-flex;align-items:center;gap:6px;">
                     <svg width="24" height="24" fill="none" stroke="#a7bfff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    <span style="color:#a7bfff;font-weight:500;">Comentar</span>
+                    <span>Comentar</span>
                 </span>
             </a>
         </div>
