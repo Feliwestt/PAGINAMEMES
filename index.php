@@ -11,7 +11,7 @@ if ($filtro) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Galería de Memes</title>
+    <title>IndieMemes</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -27,7 +27,7 @@ if ($filtro) {
         });
     <?php endif; ?>
     </script>
-    
+    <!-- Filtro de etiquetas -->
     <form method="GET" action="index.php" class="form-filtro-etiquetas" id="formFiltroEtiquetas">
         <div class="filtro-etiquetas">
             <button type="submit" name="filtro_etiqueta" value="" class="<?= $filtro===''?'activo':'' ?>">Todas</button>
@@ -48,6 +48,8 @@ if ($filtro) {
             </div>
         </div>
     </form>
+    
+    <!-- Modal de subir meme -->
     <button class="btn-flotante" id="abrirModal">Subir Meme</button>
     <div class="modal-fondo" id="modalFondo"></div>
     <div class="modal-formulario" id="modalFormulario">
@@ -76,6 +78,7 @@ if ($filtro) {
             <button type="submit">Subir Meme</button>
         </form>
     </div>
+    <!-- Galería de memes -->
     <h1 style="text-align:center;">Galería de Memes</h1>
     <div class="galeria">
     <?php while ($meme = $resultado->fetch_assoc()): ?>
