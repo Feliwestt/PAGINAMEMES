@@ -42,6 +42,7 @@ if ($filtro) {
                 <button type="button" id="btnDropdownEtiquetas" aria-haspopup="true" aria-expanded="false">&#9660;</button>
                 <div class="menu-etiquetas-extra" id="menuEtiquetasExtra">
                     <button type="submit" name="filtro_etiqueta" value="GACHA" class="<?= $filtro==='GACHA'?'activo':'' ?>">GACHA</button>
+                    <button type="submit" name="filtro_etiqueta" value="animales" class="<?= $filtro==='animales'?'activo':'' ?>">ANIMALES</button>
                     <button type="submit" name="filtro_etiqueta" value="NEWJEANS" class="<?= $filtro==='NEWJEANS'?'activo':'' ?>">NEWJEANS</button>
                     <button type="submit" name="filtro_etiqueta" value="HAPPY V" class="<?= $filtro==='HAPPY V'?'activo':'' ?>">HAPPY V</button>
                 </div>
@@ -63,6 +64,7 @@ if ($filtro) {
                 <option value="IA">IA</option>
                 <option value="NSFW">NSFW</option>
                 <option value="SFW" selected>SFW</option>
+                <option value="ANIMALES">ANIMALES</option>
                 <option value="CLIPS">CLIPS</option>
                 <option value="politico">POLITICO</option>
                 <option value="anime">ANIME</option>
@@ -76,6 +78,13 @@ if ($filtro) {
             <button type="submit">Subir Meme</button>
         </form>
     </div>
+    
+
+   
+
+
+
+
     <h1 style="text-align:center;">Galería de Memes</h1>
     <div class="galeria">
     <?php while ($meme = $resultado->fetch_assoc()): ?>
@@ -136,6 +145,7 @@ if ($filtro) {
     </div>
     <footer class="footer-flotante">
         <p>Todos los derechos reservados Indie Company</p>
+
     </footer>
     <script src="js/funcion_index.js"></script>
     <script src="js/scroll_galeria.js"></script>

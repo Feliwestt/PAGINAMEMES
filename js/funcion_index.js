@@ -107,3 +107,4 @@ modalFondoReporte.addEventListener('click', cerrarReporte);
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') cerrarReporte();
 }); 
+

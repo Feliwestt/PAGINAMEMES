@@ -1,0 +1,36 @@
+        
+        <div class="contactanos">
+            <button class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#contactModal">Contactanos</button>
+        </div>
+        
+        
+        <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <form action="enviar_correo.php" method="POST">
+                <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="contactModalLabel">Contacto</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Tu Nombre Completo</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Tu Correo Electronico</label>
+                    <input type="email" name="correo" id="correo" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea name="mensaje" id="mensaje" rows="4" class="form-control" required></textarea>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Enviar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>

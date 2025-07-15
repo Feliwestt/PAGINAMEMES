@@ -9,6 +9,14 @@ body {
 
 
 
+.contactanos{
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
 h1 {
     color: #fff;
     text-shadow: 0 2px 8px #000a;
@@ -661,3 +669,31 @@ form[action="index.php"] {
     background: linear-gradient(90deg, #232526 0%, #414345 100%);
     color: #fff;
 }
+
+
+.btn-yellow {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    border: none;
+}
+
+.btn-yellow:hover {
+    background-color: #d4ac0d;
+    color: white;
+}
+
+.dog-section {
+    background-color:rgb(135, 117, 44);
+    padding: 40px 20px;
+}
+    
+    
+.contactanos{
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+

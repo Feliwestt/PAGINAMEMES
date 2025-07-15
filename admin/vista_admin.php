@@ -60,6 +60,11 @@
                 <option value="politico" <?= $filtro==='politico'?'selected':'' ?>>politico</option>
                 <option value="anime" <?= $filtro==='anime'?'selected':'' ?>>anime</option>
                 <option value="gaming" <?= $filtro==='gaming'?'selected':'' ?>>gaming</option>
+
+                <option value="GACHA" <?= $filtro==='GACHA'?'selected':'' ?>>GACHA</option>
+                <option value="NEWJEANS" <?= $filtro==='NEWJEANS'?'selected':'' ?>>NEWJEANS</option>
+                <option value="HAPPY V" <?= $filtro==='HAPPY V'?'selected':'' ?>>HAPPY V</option>
+                
             </select>
         </form>
     </section>
