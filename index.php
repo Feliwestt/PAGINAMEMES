@@ -52,6 +52,9 @@ if ($filtro) {
     
     <!-- Modal de subir meme -->
     <button class="btn-flotante" id="abrirModal">Subir Meme</button>
+    <div class="contactanos">
+    <button class="btn-contacto" id="abrirModalContacto">Contáctanos</button>
+    </div>
     <div class="modal-fondo" id="modalFondo"></div>
     <div class="modal-formulario" id="modalFormulario">
         <button class="cerrar-modal" id="cerrarModal" title="Cerrar">&times;</button>
@@ -119,6 +122,28 @@ if ($filtro) {
         <button class="cerrar-modal-img" id="cerrarModalImg" title="Cerrar">&times;</button>
         <img id="imgModalGrande" src="" alt="Meme grande">
     </div>
+
+    <!-- Modal de contacto -->
+    <div class="modal-fondo" id="modalFondoContacto"></div>
+    <div class="modal-formulario" id="modalContacto">
+        <button class="cerrar-modal" id="cerrarModalContacto" title="Cerrar">&times;</button>
+        <h2 style="text-align:center;">Formulario de Contacto</h2>
+        <form action="enviar_correo.php" method="POST">
+            <label for="nombre">Tu Nombre Completo:</label><br>
+            <input type="text" name="nombre" id="nombre" required><br>
+
+            <label for="correo">Tu Correo Electrónico:</label><br>
+            <input type="email" name="correo" id="correo" required><br>
+
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea name="mensaje" id="mensaje" rows="4" required></textarea><br>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+
+
     <!-- Modal de reporte -->
     <div class="modal-fondo" id="modalFondoReporte" style="display:none;"></div>
     <div class="modal-formulario" id="modalReporte" style="display:none;">
@@ -166,5 +191,25 @@ if ($filtro) {
         });
     }
     </script>
+
+        <script>
+    document.getElementById('abrirModalContacto').addEventListener('click', function() {
+        document.getElementById('modalFondoContacto').classList.add('activo');
+        document.getElementById('modalContacto').classList.add('activo');
+    });
+
+    document.getElementById('cerrarModalContacto').addEventListener('click', function() {
+        document.getElementById('modalFondoContacto').classList.remove('activo');
+        document.getElementById('modalContacto').classList.remove('activo');
+    });
+
+    document.getElementById('modalFondoContacto').addEventListener('click', function() {
+        document.getElementById('modalFondoContacto').classList.remove('activo');
+        document.getElementById('modalContacto').classList.remove('activo');
+    });
+    </script>
+
+
+
 </body>
 </html>

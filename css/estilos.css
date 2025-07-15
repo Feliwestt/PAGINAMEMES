@@ -697,3 +697,25 @@ form[action="index.php"] {
 }
 
 
+.btn-contacto {
+    position: fixed;
+    top: 185px;
+    left: 32px;
+    z-index: 1000;
+    background: linear-gradient(90deg, #222 0%, #333 100%) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.04em;
+    font-weight: bold;
+    padding: 12px 28px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0008;
+    transition: background 0.2s, transform 0.15s;
+}
+.btn-contacto:hover {
+    background: linear-gradient(90deg, #222 0%, #333 100%);
+    transform: scale(1.05);
+}
+
+
